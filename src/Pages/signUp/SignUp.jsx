@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Button, Checkbox, Paper, TextField, Typography } from "@mui/material/";
 import Grid from "@mui/material/Grid";
 import { Link, useNavigate } from "react-router-dom";
-import signUpImg from "../assets/signUP.png";
-import { signUp } from "../services/userService";
+import signUpImg from "E:/CFP/ReactJs/fn/src/assets/signUP.png";
+import { signUp } from "E:/CFP/ReactJs/fn/src/services/UserService.jsx";
 
 const SignUp = () => {
     const [userDetails, setUserDetails] = useState({
