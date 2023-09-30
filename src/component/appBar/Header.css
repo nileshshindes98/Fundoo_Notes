@@ -1,0 +1,19 @@
+.Toolbar{
+   background-color: white;
+   
+
+}
+
+
+
+ 
+
+ .AppbBar {
+   background-color: white;
+ }
+ 
+ /* Add this CSS for Firefox scrollbar */
+ .AppbBar::-webkit-scrollbar {
+   display: none;
+ }
+ 
