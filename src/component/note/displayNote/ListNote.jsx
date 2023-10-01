@@ -8,8 +8,8 @@ import ColorPallete from "../../cardComponent/ColorPallete";
 import InsertPhotoOutlinedIcon from "@mui/icons-material/InsertPhotoOutlined";
 import Archive from "../../cardComponent/Archive";
 
-import Delete from "../../cardComponent/Delete";
-import Pin from "../../cardComponent/Pin";
+
+
 import { Container } from "@mui/system";
 
 const ListNote = ( {title,description}) => {
@@ -48,7 +48,7 @@ const ListNote = ( {title,description}) => {
                   </IconButton>
 
                   <IconButton>
-                    <Delete />
+                    {/* <Delete /> */}
                   </IconButton>
                 </Typography>
               </Grid>

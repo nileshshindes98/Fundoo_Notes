@@ -7,7 +7,7 @@ import ColorPallete from "../../cardComponent/ColorPallete";
 import InsertPhotoOutlinedIcon from "@mui/icons-material/InsertPhotoOutlined";
 import Archive from "../../cardComponent/Archive";
 
-import Delete from "../../cardComponent/Delete";
+// import Delete from "../../cardComponent/Delete";
 import Pin from "../../cardComponent/Pin";
 
 const GridNote = ({ title, description }) => {
@@ -16,7 +16,7 @@ const GridNote = ({ title, description }) => {
   return (
     <Box sx={{ width: 280 }}>
       <Paper style={{ border: "1px solid grey", padding: "8px" }}>
-        <Grid sx={{ display: "flex", flexDirection: "column" }}>
+        <Grid className="Grid" sx={{ display: "flex", flexDirection: "column" }}>
           <Grid
             id="title"
             item
@@ -51,7 +51,7 @@ const GridNote = ({ title, description }) => {
               </IconButton>
 
               <IconButton>
-                <Delete />
+                {/* <Delete/> */}
               </IconButton>
 
             </Typography>

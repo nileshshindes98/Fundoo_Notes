@@ -23,7 +23,7 @@ import EditLables from '../../component/drawer/EditLables';
 import Archive from '../../component/drawer/Archive';
 import LightbulbOutlinedIcon from "@mui/icons-material/LightbulbOutlined";
 import Refresh from '../../component/appBar/Refresh';
-import Toggle from '../../component/appBar/Toggle';
+import AppBarToggle from '../../component/appBar/AppbarToggle';
 import Setting from '../../component/appBar/Setting';
 import Profile from '../../component/appBar/Profile';
 import AppIcons from '../../component/appBar/AppIcons';
@@ -147,9 +147,8 @@ export default function SideNav({ renderMenu }) {
               <IconButton>
                 <Refresh />
               </IconButton>
-              <IconButton  >
-                {/* onClick={setnote3} */}
-                <Toggle />
+              <IconButton >
+                <AppBarToggle  />
               </IconButton>
               <IconButton >
                 <Setting />

@@ -6,7 +6,7 @@ import ColorPallete from "../cardComponent/ColorPallete";
 import Archive from "../cardComponent/Archive";
 import Collaborate from "../cardComponent/Collaborate";
 import InsertPhotoOutlinedIcon from "@mui/icons-material/InsertPhotoOutlined";
-import Delete from "../cardComponent/Delete";
+// import Delete from "../cardComponent/delete";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import Input from "@mui/material/Input";
@@ -136,7 +136,7 @@ const MakeNote = ({ getNoteData }) => {
                                 </IconButton>
 
                                 <IconButton sx={{ padding: "0px 18px 0px 18px" }}>
-                                    <Delete />
+                                    {/* <Delete /> */}
                                 </IconButton>
                             </Box>
 
