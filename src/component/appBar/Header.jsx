@@ -22,7 +22,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-const Header = ({setItem}) => {
+const Header = ({ setItem }) => {
 
   const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -35,7 +35,7 @@ const Header = ({setItem}) => {
       marginLeft: theme.spacing(10),
       width: 'auto',
     },
-   
+
     '&:hover': {
       backgroundColor: '#e8eaec', // Keep it grey on hover
     },
@@ -46,7 +46,7 @@ const Header = ({setItem}) => {
       backgroundColor: 'white', // Change to white when focused
     },
   }));
-  
+
 
   const SearchIconWrapper = styled('div')(({ theme }) => ({
     padding: theme.spacing(0, 2),
@@ -56,7 +56,7 @@ const Header = ({setItem}) => {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    color:'grey'
+    color: 'grey'
   }));
 
   const StyledInputBase = styled(InputBase)(({ theme }) => ({
@@ -69,11 +69,13 @@ const Header = ({setItem}) => {
       width: '100%',
       [theme.breakpoints.up('md')]: {
         //here you can increase the width of the search bar
-        width: '70ch',  
+        width: '70ch',
       },
     },
   }));
 
+  // ------------------------this is for profile menu-------------------
+  // ----------------------------------------------------------------------
 
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -86,6 +88,13 @@ const Header = ({setItem}) => {
   const handleMenuClose = () => {
     setAnchorEl(null);
   };
+
+
+  // -------------------------------------------------------------------------------------
+
+  // ------------------------this is for signout functionality-------------------------------
+
+  // ***************************************************************************************
 
   const navigate = useNavigate();
   const handleLogout = () => {
@@ -117,49 +126,62 @@ const Header = ({setItem}) => {
     </Menu>
   );
 
-  function menuToggle() {
-    setItem((prev) => !prev);
-  }
+
+  // ******************************************************
+  // -------------this for drawer functionality------------
+  // ******************************************************
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
 
 
   return (
     <div>
-      <Box sx={{ flexGrow: 1 ,color:"white"}}>
+      <Box sx={{ flexGrow: 1, color: "white" }}>
         <AppBar className='AppbBar'>
-          <Toolbar className='Toolbar'> 
-          {/* whole appbar css can apply with this parent bar i.e. Toolbar */}
+          <Toolbar className='Toolbar'>
+            {/* whole appbar css can apply with this parent bar i.e. Toolbar */}
             {/* -----------------------------menu------------------------------------------*/}
-          <IconButton
-            size="large"
-            edge="start"
-            color="black"
-            aria-label="open drawer"
-            sx={{ mr: 2, color: "grey" }}
-            onClick={menuToggle} // Open/close the drawer
-          >
-            <MenuIcon />
-          </IconButton>
-          {/* --------------------------google keep name---------------------------- */}
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <img
-              class="gb_Hc gb_Hd"
-              src="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png"
-              srcset="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png 1x, https://www.gstatic.com/images/branding/product/2x/keep_2020q4_48dp.png 2x "
-              alt=""
-              aria-hidden="true"
-              role="presentation"
-            />
-            <Typography
-              variant="h6"
-              noWrap
-              component="div"
-              sx={{ display: { xs: "none", sm: "block" }, color: "black" }}
+            <IconButton
+              color="black"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              sx={{
+                marginRight: 5,
+                ...(open && { display: 'none' }),
+              }}
             >
-              Keep
-            </Typography>
-          </div>            
-          
-          <Search>
+              <MenuIcon />
+            </IconButton>
+            {/* --------------------------google keep name---------------------------- */}
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <img
+                class="gb_Hc gb_Hd"
+                src="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png"
+                srcset="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png 1x, https://www.gstatic.com/images/branding/product/2x/keep_2020q4_48dp.png 2x "
+                alt=""
+                aria-hidden="true"
+                role="presentation"
+              />
+              <Typography
+                variant="h6"
+                noWrap
+                component="div"
+                sx={{ display: { xs: "none", sm: "block" }, color: "black" }}
+              >
+                Keep
+              </Typography>
+            </div>
+
+            <Search>
               <SearchIconWrapper>
                 <SearchIcon />
               </SearchIconWrapper>
@@ -170,45 +192,45 @@ const Header = ({setItem}) => {
             </Search>
 
             {/* ------------------------------------------box------------------------------ */}
-          <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            {/* -----------------------------------refresh-------------------------------------------- */}
-            <IconButton edge="start" color="black">
-              <RefreshIcon />
-            </IconButton>
-
-            <IconButton size="large" color="black" >
-            {/* onClick={setnote3} */}
-              <ViewStreamIcon />
-            </IconButton>
-
-            {/* ------------------------------setting-------------------------------------- */}
-            <IconButton size="large" color="black">
-              <SettingsOutlinedIcon sx={{ color: "grey" }} />
-            </IconButton>
-
-            {/* ------------------------------appIcon------------------------------------- */}
-            <IconButton color="black">
-              <AppsIcon />
-            </IconButton>
-
-            {/* ------------------------------profile-icon---------------------------------------- */}
-            <MenuItem onClick={handleProfileMenuOpen}>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="primary-search-account-menu"
-                aria-haspopup="true"
-                color="black"
-              >
-                <AccountCircle />
+            <Box sx={{ flexGrow: 1 }} />
+            <Box sx={{ display: { xs: "none", md: "flex" } }}>
+              {/* -----------------------------------refresh-------------------------------------------- */}
+              <IconButton edge="start" color="black">
+                <RefreshIcon />
               </IconButton>
-            </MenuItem>
-          </Box>
+
+              <IconButton size="large" color="black" >
+                {/* onClick={setnote3} */}
+                <ViewStreamIcon />
+              </IconButton>
+
+              {/* ------------------------------setting-------------------------------------- */}
+              <IconButton size="large" color="black">
+                <SettingsOutlinedIcon sx={{ color: "grey" }} />
+              </IconButton>
+
+              {/* ------------------------------appIcon------------------------------------- */}
+              <IconButton color="black">
+                <AppsIcon />
+              </IconButton>
+
+              {/* ------------------------------profile-icon---------------------------------------- */}
+              <MenuItem onClick={handleProfileMenuOpen}>
+                <IconButton
+                  size="large"
+                  aria-label="account of current user"
+                  aria-controls="primary-search-account-menu"
+                  aria-haspopup="true"
+                  color="black"
+                >
+                  <AccountCircle />
+                </IconButton>
+              </MenuItem>
+            </Box>
 
           </Toolbar>
         </AppBar>
-        
+
         {renderMenu}
       </Box>
     </div>
