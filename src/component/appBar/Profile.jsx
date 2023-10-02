@@ -62,7 +62,6 @@ const Profile = () => {
 
     return (
         <div>
-
             <MenuItem onClick={handleProfileMenuOpen}>
                 <IconButton
                     size="large"
@@ -74,6 +73,7 @@ const Profile = () => {
                     <AccountCircle />
                 </IconButton>
             </MenuItem>
+            {renderMenu}
         </div>
     )
 }
