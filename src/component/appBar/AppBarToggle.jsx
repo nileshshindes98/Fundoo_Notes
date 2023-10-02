@@ -1,12 +1,15 @@
 import React from 'react'
 import ViewStreamRoundedIcon from '@mui/icons-material/ViewStreamRounded';
 import { IconButton } from '@mui/material';
+import GridViewOutlinedIcon from '@mui/icons-material/GridViewOutlined';
 
-const AppBarToggle  = ({toggleDisplay }) => {
+const AppBarToggle  = ({handleToggle,toggle}) => {
   return (
     <div>
-      <IconButton size="large" color="black" onClick={toggleDisplay}>
-        <ViewStreamRoundedIcon />
+      <IconButton size="large" color="black" onClick={handleToggle}>
+        {toggle ? 
+          <GridViewOutlinedIcon /> :  <ViewStreamRoundedIcon />
+        }
       </IconButton>
     </div>
   )
