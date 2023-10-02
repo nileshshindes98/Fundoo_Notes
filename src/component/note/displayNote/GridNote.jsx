@@ -26,52 +26,45 @@ const GridNote = ({ id,title, description,getNoteData}) => {
     getNoteData();
   }
   return (
-    <Box sx={{ width: 280, border:"1px solid black"}}>
-      <Paper style={{ border: "1px solid grey", padding: "8px" }}>
-        <Grid className="Grid" sx={{ display: "flex", flexDirection: "column" }}>
-          <Grid
-            id="title"
-            item
-            sx={{ display: "flex", justifyContent: "space-between" }}>
+    <Box sx={{ width: "auto", m: 1 }}>
+    <Paper style={{ border: "1px solid grey", padding: "8px" }}>
+      <Grid>
+        <Grid id="title"
+        item>
           <Typography>{title}</Typography>
-            {/* {items.title} pass this value in this field  */}
-            <Pin sx={{ color: "grey" }} />
-          </Grid>
-          <Grid id="description" item>
-            <Typography>{description}</Typography>
-          </Grid>
-          <Grid item>
-            <Typography>
-              <IconButton aria-label="Remainder">
-                <RemindMe />
-              </IconButton>
-
-              <IconButton>
-                <Collaborate />
-              </IconButton>
-
-              <IconButton>
-                <ColorPallete />
-              </IconButton>
-
-              <IconButton>
-                <InsertPhotoOutlinedIcon />
-              </IconButton>
-
-              <IconButton onClick={archiveNote}>
-                <Archive />
-              </IconButton>
-
-              <IconButton onClick={deleteNote}>
-                {/* <Delete/> */}
-                <DeleteIcon />
-              </IconButton>
-
-            </Typography>
-          </Grid>
         </Grid>
-      </Paper>
-    </Box>
+        <Grid id="description" item>
+          <Typography>{description}</Typography>
+        </Grid>
+        <div style={{display:"flex",justifyContent:"space-between"}}>
+          <Typography sx={{display:"flex",justifyContent:"space-between"}}>
+            <IconButton aria-label="Remainder">
+              <RemindMe />
+            </IconButton>
+
+            <IconButton>
+              <ColorPallete />
+            </IconButton>
+
+            <IconButton>
+              <Collaborate />
+            </IconButton>
+
+            <IconButton>
+              <InsertPhotoOutlinedIcon/>
+            </IconButton>
+
+            <IconButton onClick={archiveNote}>
+              <Archive />
+            </IconButton>
+
+            <IconButton onClick={deleteNote}><DeleteIcon/>
+            </IconButton>
+          </Typography>
+        </div>
+      </Grid>
+    </Paper>
+  </Box>
   );
 };
 

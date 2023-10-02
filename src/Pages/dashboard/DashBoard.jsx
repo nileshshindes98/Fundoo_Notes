@@ -28,6 +28,8 @@ import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined
 import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
 import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
+import '../dashboard/DashBoard.css';
+import { useMediaQuery } from '@mui/material';
 
 const drawerWidth = 240;
 
@@ -53,12 +55,14 @@ const closedMixin = (theme) => ({
 });
 
 const DrawerHeader = styled('div')(({ theme }) => ({
+  
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'flex-end',
   padding: theme.spacing(0, 1),
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
+
 }));
 
 const AppBar = styled(MuiAppBar, {
@@ -87,11 +91,18 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     boxSizing: 'border-box',
     ...(open && {
       ...openedMixin(theme),
-      '& .MuiDrawer-paper': openedMixin(theme),
+      '& .MuiDrawer-paper': {
+        ...openedMixin(theme),
+        border: 'none',
+         // Remove the border
+      },
     }),
     ...(!open && {
       ...closedMixin(theme),
-      '& .MuiDrawer-paper': closedMixin(theme),
+      '& .MuiDrawer-paper': {
+        ...closedMixin(theme),
+        border: 'none', // Remove the border
+      },
     }),
   }),
 );
@@ -100,14 +111,25 @@ export default function SideNav() {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
   const [menudata, setMenudata] = useState("Notes");
+  const isMobile = useMediaQuery('(max-width:1000px)');
   const handleDrawerClose = () => {
     setOpen(false);
   };
 
-  const [toggle,setToggle] = useState(false);
+  const [toggle, setToggle] = useState(false);
   const handleToggle = () => {
     setToggle(!toggle)
   }
+
+  const [listToggle, setListToggle] = useState(false);
+  const listViewHandle = () => {
+    setListToggle(!listToggle)
+  }
+
+  const handleItemClick = (item) => {
+    setMenudata(item);
+  };
+
   return (
     <>
       <Box sx={{ display: 'flex' }}>
@@ -142,13 +164,23 @@ export default function SideNav() {
             </div>
 
             <SearchBar />
+            {isMobile?(
+            <>
+            <IconButton >
+                <AppBarToggle handleToggle={handleToggle} toggle={toggle} listViewHandle={listViewHandle} listToggle={listToggle} />
+              </IconButton>
+              <IconButton>
+                <Profile />
+              </IconButton>
+
+            </>):(<>
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
               <IconButton>
                 <Refresh />
               </IconButton>
               <IconButton >
-                <AppBarToggle  handleToggle={handleToggle} toggle={toggle}/>
+                <AppBarToggle handleToggle={handleToggle} toggle={toggle} listViewHandle={listViewHandle} listToggle={listToggle} />
               </IconButton>
               <IconButton >
                 <Setting />
@@ -160,20 +192,27 @@ export default function SideNav() {
                 <Profile />
               </IconButton>
             </Box>
+            </>
+            )}
           </Toolbar>
         </AppBar>
 
-        <Drawer variant="permanent" open={open}>
+        <Drawer variant="permanent" open={open} >
           <DrawerHeader>
             <IconButton onClick={handleDrawerClose}>
               {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
             </IconButton>
           </DrawerHeader>
           <Divider />
-          <List>
-
-            <ListItem disablePadding sx={{ display: 'block' }} onClick={() => setMenudata("Notes")}>
+          <List >
+            <ListItem
+              className={`list-item ${menudata === "Notes" ? 'selected' : ''}`}
+              disablePadding
+              sx={{ display: 'block' }}
+              onClick={() => handleItemClick("Notes")}
+            >
               <ListItemButton
+                className="list-item-button"
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? 'initial' : 'center',
@@ -189,14 +228,19 @@ export default function SideNav() {
                   }}
                 >
                   <LightbulbOutlinedIcon />
-
                 </ListItemIcon>
                 <ListItemText primary="Notes" />
               </ListItemButton>
             </ListItem>
 
-            <ListItem disablePadding sx={{ display: 'block' }} onClick={() => setMenudata("Reminders")}>
+            <ListItem
+              className={`list-item ${menudata === "Reminders" ? 'selected' : ''}`}
+              disablePadding
+              sx={{ display: 'block' }}
+              onClick={() => handleItemClick("Reminders")}
+            >
               <ListItemButton
+                className="list-item-button"
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? 'initial' : 'center',
@@ -217,8 +261,14 @@ export default function SideNav() {
               </ListItemButton>
             </ListItem>
 
-            <ListItem disablePadding sx={{ display: 'block' }} onClick={() => setMenudata("EditLables")}>
+            <ListItem
+              className={`list-item ${menudata === "EditLables" ? 'selected' : ''}`}
+              disablePadding
+              sx={{ display: 'block' }}
+              onClick={() => handleItemClick("EditLables")}
+            >
               <ListItemButton
+                className="list-item-button"
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? 'initial' : 'center',
@@ -239,9 +289,14 @@ export default function SideNav() {
               </ListItemButton>
             </ListItem>
 
-
-            <ListItem disablePadding sx={{ display: 'block' }} onClick={() => setMenudata("Archive")}>
+            <ListItem
+              className={`list-item ${menudata === "Archive" ? 'selected' : ''}`}
+              disablePadding
+              sx={{ display: 'block' }}
+              onClick={() => handleItemClick("Archive")}
+            >
               <ListItemButton
+                className="list-item-button"
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? 'initial' : 'center',
@@ -262,9 +317,14 @@ export default function SideNav() {
               </ListItemButton>
             </ListItem>
 
-
-            <ListItem disablePadding sx={{ display: 'block' }} onClick={() => setMenudata("Bin")}>
+            <ListItem
+              className={`list-item ${menudata === "Bin" ? 'selected' : ''}`}
+              disablePadding
+              sx={{ display: 'block' }}
+              onClick={() => handleItemClick("Bin")}
+            >
               <ListItemButton
+                className="list-item-button"
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? 'initial' : 'center',
@@ -284,11 +344,10 @@ export default function SideNav() {
                 <ListItemText primary="Bin" />
               </ListItemButton>
             </ListItem>
-
           </List>
         </Drawer>
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-          <Notes menudata={menudata} toggleView={toggle} />
+          <Notes menudata={menudata} toggleView={toggle} displayView={listToggle} />
         </Box>
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
           <DrawerHeader />

@@ -26,7 +26,7 @@ const styles = {
     },
 };
 
-const MakeNote = ({ getNoteData,settoggle }) => {
+const MakeNote = ({ getNoteData, settoggle }) => {
     //Create a new state variable in Takenote2 to store the note data.
     const [noteData, setNoteData] = useState({
         description: "",
@@ -36,7 +36,7 @@ const MakeNote = ({ getNoteData,settoggle }) => {
 
     // Create a new function called submitNote to post the note data to the API.
     const submitNote = async () => {
-        if(!noteData.title || !noteData.description) {
+        if (!noteData.title || !noteData.description) {
             return settoggle(false);
         }
         let response = await addNote(noteData);
@@ -61,15 +61,16 @@ const MakeNote = ({ getNoteData,settoggle }) => {
     return (
         <Box
             sx={{
+                border: "none",
                 display: "flex",
                 flexWrap: "wrap",
                 "& > :not(style)": {
-                    m: 4,
+                    // m: 0,
                 },
             }}
         >
-            <Paper elevation={3} sx={{ width: 600 }}>
-                <Card variant="outlined" sx={{ maxWidth: 600, padding: 1 }}>
+            <Paper elevation={6} sx={{ width: "48vw", borderRadius: 2 }}>
+                <Card variant="outlined" sx={{ padding: 1, width: "auto" }}>
                     <Box sx={{ height: "auto" }}>
                         {/* First Row */}
                         <Input
@@ -117,11 +118,11 @@ const MakeNote = ({ getNoteData,settoggle }) => {
                                     aria-label="Remainder"
                                     sx={{ padding: "0px 18px 0px 18px" }}
                                 >
-                                    <RemindMe/>
+                                    <RemindMe />
                                 </IconButton>
 
                                 <IconButton sx={{ padding: "0px 18px 0px 18px" }}>
-                                    <Collaborate/>
+                                    <Collaborate />
                                 </IconButton>
 
                                 <IconButton sx={{ padding: "0px 18px 0px 18px" }}>
@@ -144,7 +145,11 @@ const MakeNote = ({ getNoteData,settoggle }) => {
                                 </IconButton>
                             </Box>
 
-                            <Button sx={{ backgroundColor: "#f1f3f4", color: "black" }} onClick={submitNote}>
+                            <Button sx={{
+                                "&:hover": {
+                                    backgroundColor: "#f1f3f4",
+                                }, color: "black"
+                            }} onClick={submitNote}>
                                 Close
                             </Button>
                         </Box>
