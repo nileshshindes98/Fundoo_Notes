@@ -5,3 +5,35 @@
     background-color: #f0f0f0;
     /* border: 1px solid #000000; */
 }
+
+/* sidenav.css */
+
+
+  
+  /* Styling for the list items */
+  .list-item {
+    border-top-right-radius: 80px;
+    border-bottom-right-radius: 80px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    padding: 9px 0; /* Add vertical padding to the list items */
+  }
+  .list-item.list-item:hover {
+    background-color: rgba(144, 144, 144, 0.589); /* Background color for the selected item */
+
+  }
+  .list-item.selected {
+    background-color: #feefc3; /* Background color for the selected item */
+
+  }
+  
+  /* Styling for the icons */
+  .list-item .MuiSvgIcon-root {
+    color: #333; /* Icon color */
+    margin-right: 16px; /* Adjust the margin as needed */
+  }
+  
+  /* Styling for the list item text */
+  .list-item .MuiListItemText-root {
+    color: #333; /* Text color */
+  }

@@ -24,3 +24,11 @@ export const getNotes = async () => {
     return response;
   
   };
+export const archiveNotes =async (noteData)=>{
+  const response = await axios.post(`${BASE_URL}/archiveNotes`,noteData, headerConfig())
+  return response;
+}
+export const deleteNotes =async (noteData)=>{
+  const response = await axios.post(`${BASE_URL}/trashNotes`,noteData, headerConfig())
+  return response;
+}

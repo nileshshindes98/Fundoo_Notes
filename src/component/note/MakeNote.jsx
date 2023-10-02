@@ -26,7 +26,7 @@ const styles = {
     },
 };
 
-const MakeNote = ({ getNoteData }) => {
+const MakeNote = ({ getNoteData,settoggle }) => {
     //Create a new state variable in Takenote2 to store the note data.
     const [noteData, setNoteData] = useState({
         description: "",
@@ -36,10 +36,14 @@ const MakeNote = ({ getNoteData }) => {
 
     // Create a new function called submitNote to post the note data to the API.
     const submitNote = async () => {
+        if(!noteData.title || !noteData.description) {
+            return settoggle(false);
+        }
         let response = await addNote(noteData);
         console.log(response);
 
         getNoteData();
+        settoggle(false);
     };
 
     const handleArchive = () => {

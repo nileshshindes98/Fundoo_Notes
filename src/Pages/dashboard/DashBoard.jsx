@@ -17,13 +17,9 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Notes from '../../component/drawer/Notes';
-import Reminders from '../../component/drawer/Reminders';
-import Bin from '../../component/drawer/Bin';
-import EditLables from '../../component/drawer/EditLables';
-import Archive from '../../component/drawer/Archive';
 import LightbulbOutlinedIcon from "@mui/icons-material/LightbulbOutlined";
 import Refresh from '../../component/appBar/Refresh';
-import AppBarToggle from '../../component/appBar/AppbarToggle';
+import AppBarToggle from '../../component/appBar/AppBarToggle';
 import Setting from '../../component/appBar/Setting';
 import Profile from '../../component/appBar/Profile';
 import AppIcons from '../../component/appBar/AppIcons';
@@ -100,14 +96,18 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-export default function SideNav({ renderMenu }) {
+export default function SideNav() {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
   const [menudata, setMenudata] = useState("Notes");
-
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  const [toggle,setToggle] = useState(false);
+  const handleToggle = () => {
+    setToggle(!toggle)
+  }
   return (
     <>
       <Box sx={{ display: 'flex' }}>
@@ -148,7 +148,7 @@ export default function SideNav({ renderMenu }) {
                 <Refresh />
               </IconButton>
               <IconButton >
-                <AppBarToggle  />
+                <AppBarToggle  handleToggle={handleToggle} toggle={toggle}/>
               </IconButton>
               <IconButton >
                 <Setting />
@@ -162,7 +162,6 @@ export default function SideNav({ renderMenu }) {
             </Box>
           </Toolbar>
         </AppBar>
-        {renderMenu}
 
         <Drawer variant="permanent" open={open}>
           <DrawerHeader>
@@ -289,11 +288,7 @@ export default function SideNav({ renderMenu }) {
           </List>
         </Drawer>
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-          {menudata == "Notes" && <Notes />}
-          {menudata == "Reminders" && <Reminders />}
-          {menudata == "EditLables" && <EditLables />}
-          {menudata == "Archive" && <Archive />}
-          {menudata == "Bin" && <Bin />}
+          <Notes menudata={menudata} toggleView={toggle} />
         </Box>
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
           <DrawerHeader />

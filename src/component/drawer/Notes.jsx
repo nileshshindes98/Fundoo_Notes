@@ -8,7 +8,7 @@ import GridNote from '../note/displayNote/GridNote';
 import ListNote from '../note/displayNote/ListNote';
 
 
-const Notes = () => {
+const Notes = ({menudata,toggleView}) => {
   const DrawerHeader = styled('div')(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
@@ -22,14 +22,27 @@ const Notes = () => {
   const [notes, setNotes] = useState([]);
 
   const getNoteData = async () => {
-    let res = await getNotes();
-    setNotes(res.data.data.data);
-    console.log(res.data.data.data);
+    // let res = await getNotes();
+    // setNotes(res.data.data.data);
+    // console.log(res.data.data.data);
+    let response = await getNotes();
+    // console.log(response.data.data.data)
+    let arr = response.data.data.data
+    if(menudata === 'Notes') {
+      let newArray = arr.filter(item => item.isArchived === false && item.isDeleted === false)
+      setNotes(newArray)
+    } else if (menudata === 'Archive') {
+      let newArray = arr.filter(item => item.isArchived === true )
+      setNotes(newArray)
+    } else if(menudata === 'Bin') {
+      let newArray = arr.filter(item => item.isDeleted === true)
+      setNotes(newArray)
+    }
   };
 
   useEffect(() => {
     getNoteData();
-  }, []);
+  }, [menudata]);
 
 
   const [toggle, settoggle] = useState(false);
@@ -38,37 +51,44 @@ const Notes = () => {
   }
 
    //toggle grid ,list
-   const [display, setdisplay] = useState(false);
-   function toggleDisplay() {
-     setdisplay((prevState) => !prevState);
-   }
+  //  const [display, setdisplay] = useState(false);
 
 
   return (
     <>
+      <DrawerHeader/>
 
-      <DrawerHeader />
-
-      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
+      <Box sx={{ display: 'flex',justifyContent:"center",/*border:"1px solid black"*/}}>
+        
+        <div container spacing={2}>
+          <div>
             {toggle ? (
-              <MakeNote getNoteData={getNoteData} handletoggle={handletoggle} />
+              <Box sx={{display:"flex" ,justifyContent:'center'}}> 
+              <MakeNote getNoteData={getNoteData} handletoggle={handletoggle} settoggle={settoggle} />
+              </Box>
             ) : (
+              <Box sx={{display:"flex" ,justifyContent:'center'}}> 
+
               <TakeNote handletoggle={handletoggle} />
+              </Box>
             )}
-          </Grid>
+          </div>
+          <div style={{/*border:"2px solid green"*/}}>
           {notes.map((note) => (
-            <Grid item xs={12} sm={6} md={4} lg={3} key={note.id}>
-              {display ? (
-                <ListNote title={note.title} description={note.description} display={display} />
-              ) : 
-              (
-                <GridNote title={note.title} description={note.description} display={display} />
-              )}
-            </Grid>
+            <div key={note.id}>
+              {toggleView ? (
+                <div style={{width:"100%"}}>
+                <ListNote title={note.title} description={note.description} />
+                </div>) : 
+              ( 
+            <div>
+
+                <GridNote getNoteData={getNoteData} id={note.id} title={note.title} description={note.description} />
+             </div> )}
+            </div>
           ))}
-        </Grid>
+          </div>
+        </div>
       </Box>  
     </>
   )
