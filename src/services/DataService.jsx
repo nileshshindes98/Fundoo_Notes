@@ -32,3 +32,13 @@ export const deleteNotes =async (noteData)=>{
   const response = await axios.post(`${BASE_URL}/trashNotes`,noteData, headerConfig())
   return response;
 }
+
+export const deleteNotesForever =async (noteData)=>{
+  const response = await axios.post(`${BASE_URL}/deleteForeverNotes`,noteData, headerConfig())
+  return response;
+}
+ 
+export let changeColor = async(noteData) => {
+  let response = await axios.post('http://fundoonotes.incubation.bridgelabz.com/api/notes/changesColorNotes',noteData,headerConfig())
+  return response;
+}
