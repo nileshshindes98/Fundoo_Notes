@@ -32,6 +32,7 @@ const MakeNote = ({ getNoteData, settoggle }) => {
         description: "",
         title: "",
         isArchived: false,
+        color :""
     });
 
     // Create a new function called submitNote to post the note data to the API.
@@ -53,6 +54,14 @@ const MakeNote = ({ getNoteData, settoggle }) => {
         });
     };
 
+    const handleColorSelect = (color) => {
+        // Update the selected color in the state
+        setNoteData({
+          ...noteData,
+          color: color,
+        });
+      };
+
     //Update the handleChange function to update the noteData state variable.
     const handleChange = (event) => {
         setNoteData({ ...noteData, [event.target.id]: event.target.value });
@@ -69,8 +78,8 @@ const MakeNote = ({ getNoteData, settoggle }) => {
                 },
             }}
         >
-            <Paper elevation={6} sx={{ width: "48vw", borderRadius: 2 }}>
-                <Card variant="outlined" sx={{ padding: 1, width: "auto" }}>
+            <Paper elevation={6} sx={{ width: "48vw", borderRadius: 2 ,backgroundColor: noteData?.color ? noteData.color : '#fff'}}>
+                <Card variant="outlined" sx={{ padding: 1, width: "auto",backgroundColor:"transparent"}}>
                     <Box sx={{ height: "auto" }}>
                         {/* First Row */}
                         <Input
@@ -126,7 +135,11 @@ const MakeNote = ({ getNoteData, settoggle }) => {
                                 </IconButton>
 
                                 <IconButton sx={{ padding: "0px 18px 0px 18px" }}>
-                                    <ColorPallete />
+                                    <ColorPallete  
+                                     action={"create"}
+                                    setNoteData={setNoteData}
+                                    getNoteData={getNoteData}
+                                    onColorSelect={handleColorSelect}/>
                                 </IconButton>
 
                                 <IconButton sx={{ padding: "0px 18px 0px 18px" }}>

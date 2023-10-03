@@ -90,12 +90,13 @@ const Notes = ({ menudata, toggleView, displayView }) => {
           >
             {toggleView ? (
               <div style={{ width: "auto" }}>
-                <ListNote getNoteData={getNoteData} id={note.id} title={note.title} description={note.description} />
+                {/* id={note.id} title={note.title} description={note.description} */}
+                <ListNote getNoteData={getNoteData} note={note} />
 
               </div>) :
               (
                 <div>
-                  <GridNote getNoteData={getNoteData} id={note.id} title={note.title} description={note.description} />
+                  <GridNote getNoteData={getNoteData} note={note} />
 
                 </div>)}
           </div>

@@ -15,35 +15,35 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 
 
-const ListNote = ({ id, title, description, getNoteData }) => {
+const ListNote = ({ note, getNoteData }) => {
   const archiveNote = async () => {
-    console.log(id);
-    let data = { noteIdList: [id], isArchived: true };
+    console.log(note.id);
+    let data = { noteIdList: [note.id], isArchived: true };
     await archiveNotes(data);
     getNoteData();
   }
 
   const deleteNote = async () => {
-    console.log(id);
-    let data = { noteIdList: [id], isDeleted: true };
+    console.log(note.id);
+    let data = { noteIdList: [note.id], isDeleted: true };
     await deleteNotes(data);
     getNoteData();
   }
   return (
 
     <Box sx={{ width: "73.4%" ,marginLeft:"12.2%",marginBottom:"2%"}}>
-      <Paper style={{ border: "1px solid grey", padding: "2%" ,width:"auto"}}>
+      <Paper style={{ border: "1px solid grey", padding: "2%" ,width:"auto", backgroundColor: note?.color ? note.color : '#fff'}}>
         <Grid className="Grid" sx={{ display: "flex", flexDirection: "column" }}>
           <Grid
             id="title"
             item
             sx={{ display: "flex", justifyContent: "space-between",padding:"1%"}}>
-            <Typography>{title}</Typography>
+            <Typography>{note.title}</Typography>
             {/* {items.title} pass this value in this field  */}
             <PushPinOutlinedIcon sx={{ color: "grey" }} />
           </Grid>
           <Grid id="description" item sx={{padding:"1%"}}>
-            <Typography>{description}</Typography>
+            <Typography>{note.title}</Typography>
           </Grid>
           <Grid item >
             <Typography sx={{ display:"flex",justifyContent:"flex-start"}}>
@@ -56,7 +56,9 @@ const ListNote = ({ id, title, description, getNoteData }) => {
               </IconButton>
 
               <IconButton>
-                <ColorPallete />
+                <ColorPallete
+                getNoteData={getNoteData}
+                />
               </IconButton>
 
               <IconButton>

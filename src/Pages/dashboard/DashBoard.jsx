@@ -351,7 +351,6 @@ export default function SideNav() {
         </Box>
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
           <DrawerHeader />
-
         </Box>
       </Box>
     </>
