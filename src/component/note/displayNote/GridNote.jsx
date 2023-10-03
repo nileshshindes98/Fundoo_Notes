@@ -60,64 +60,65 @@ const GridNote = ({ note, getNoteData, setNoteData }) => {
           <Grid id="description" item>
             <Typography>{note.description}</Typography>
           </Grid>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <Typography
-              sx={{
-                minWidth: "240px",
-                display: "flex",
-                justifyContent: "space-between",
-              }}
-            >
-              {!note.isDeleted ? (
-                <div>
-                  <IconButton aria-label="Remainder">
-                    <RemindMe />
-                  </IconButton>
+          <Typography
+            sx={{
+              minWidth: "240px",
+            }}
+          >
+            {!note.isDeleted ? (
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <IconButton aria-label="Remainder">
+                  <RemindMe />
+                </IconButton>
 
-                  <IconButton>
-                    <ColorPallete
-                      noteId={note.id}
-                      action={"edit"}
-                      getNoteData={getNoteData}
-                      setNoteData={setNoteData}
-                      onClick={changeColor}
-                    />
-                  </IconButton>
+                <IconButton>
+                  <ColorPallete
+                    noteId={note.id}
+                    action={"edit"}
+                    getNoteData={getNoteData}
+                    setNoteData={setNoteData}
+                    onClick={changeColor}
+                  />
+                </IconButton>
 
-                  <IconButton>
-                    <Collaborate />
-                  </IconButton>
+                <IconButton>
+                  <Collaborate />
+                </IconButton>
 
-                  <IconButton>
-                    <InsertPhotoOutlinedIcon />
-                  </IconButton>
+                <IconButton>
+                  <InsertPhotoOutlinedIcon />
+                </IconButton>
 
-                  {!note.isArchived ? (
-                    <IconButton onClick={archiveNote}>
-                      <Archive />
-                    </IconButton>
-                  ) : (
-                    <IconButton onClick={archiveNote}>
-                      <UnarchiveOutlinedIcon />
-                    </IconButton>
-                  )}
+                {!note.isArchived ? (
+                  <IconButton onClick={archiveNote}>
+                    <Archive />
+                  </IconButton>
+                ) : (
+                  <IconButton onClick={archiveNote}>
+                    <UnarchiveOutlinedIcon />
+                  </IconButton>
+                )}
 
-                  <IconButton onClick={deleteNote}>
-                    <DeleteIcon />
-                  </IconButton>
-                </div>
-              ) : (
-                <div>
-                  <IconButton onClick={deleteNoteForever}>
-                    <DeleteForeverIcon />
-                  </IconButton>
-                  <IconButton onClick={restoreDeletedNote}>
-                    <RestoreFromTrashIcon />
-                  </IconButton>
-                </div>
-              )}
-            </Typography>
-          </div>
+                <IconButton onClick={deleteNote}>
+                  <DeleteIcon />
+                </IconButton>
+              </div>
+            ) : (
+              <div style={{ display: "flex", justifyContent: "end" }}>
+                <IconButton onClick={deleteNoteForever}>
+                  <DeleteForeverIcon />
+                </IconButton>
+                <IconButton onClick={restoreDeletedNote}>
+                  <RestoreFromTrashIcon />
+                </IconButton>
+              </div>
+            )}
+          </Typography>
         </Grid>
       </Paper>
     </Box>
