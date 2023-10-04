@@ -8,7 +8,7 @@ import GridNote from '../note/displayNote/GridNote';
 import ListNote from '../note/displayNote/ListNote';
 
 
-const Notes = ({ menudata, toggleView, displayView }) => {
+const Notes = ({ menudata, toggleView, displayView,firstNoteToggle }) => {
   const DrawerHeader = styled('div')(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
@@ -55,41 +55,42 @@ const Notes = ({ menudata, toggleView, displayView }) => {
     <>
       <DrawerHeader />
 
-      <Box sx={{ display: 'flex', justifyContent: "center", flexDirection: "column", width: "100%"}}>
-
+    
 
         <div style={{ marginBottom: "2%", left: 0 }}>
           {toggle ? (
-            <Box sx={{ display: "flex", justifyContent: 'center' }}>
+            <div style={{display:"flex",justifyContent:"center"}} >
               <MakeNote getNoteData={getNoteData} handletoggle={handletoggle} settoggle={settoggle} />
-            </Box>
+            </div>
           ) : (
-            <Box sx={{ display: "flex", justifyContent: 'center' }}>
-
+            <div style={{ display: "flex", justifyContent: "center" }}>
               <TakeNote handletoggle={handletoggle} />
-            </Box>
+            </div>
           )}
         </div>
-      </Box >
+     
 
 
       <div style={ displayView ?
         {
+          
           display:"flex",
           flexDirection:"column",
-          marginLeft: "2%"
+          marginLeft: "25%",
+          marginTop:"2%"
         } :
         {
           display: "flex",
           flexWrap: "wrap",
           justifyContent: "flex-start",
-          marginLeft: "2%"
+          marginLeft: "1%",
+        
         }}>
         {notes.map((note) => (
           <div key={note.id}
           >
             {toggleView ? (
-              <div style={{ width: "auto" }}>
+              <div style={{ width: "auto" ,paddingLeft:"20px"}}>
                 {/* id={note.id} title={note.title} description={note.description} */}
                 <ListNote getNoteData={getNoteData} note={note} />
 

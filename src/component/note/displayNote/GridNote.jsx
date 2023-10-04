@@ -26,6 +26,14 @@ const GridNote = ({ note, getNoteData, setNoteData }) => {
     getNoteData();
   };
 
+  const unarchiveNote = async () => {
+    console.log(note.id);
+    let data = { noteIdList: [note.id], isArchived: false };
+    await archiveNotes(data);
+    getNoteData();
+  };
+  
+
   const deleteNote = async () => {
     console.log(note.id);
     let data = { noteIdList: [note.id], isDeleted: true };
@@ -35,6 +43,9 @@ const GridNote = ({ note, getNoteData, setNoteData }) => {
 
   const restoreDeletedNote = async () => {
     console.log(note.id);
+    let data = { noteIdList: [note.id], isDeleted: false };
+    await deleteNotes(data);
+    getNoteData();
   };
 
   const deleteNoteForever = async () => {
@@ -65,6 +76,7 @@ const GridNote = ({ note, getNoteData, setNoteData }) => {
               minWidth: "240px",
             }}
           >
+       
             {!note.isDeleted ? (
               <div
                 style={{
@@ -99,7 +111,7 @@ const GridNote = ({ note, getNoteData, setNoteData }) => {
                     <Archive />
                   </IconButton>
                 ) : (
-                  <IconButton onClick={archiveNote}>
+                  <IconButton onClick={unarchiveNote}>
                     <UnarchiveOutlinedIcon />
                   </IconButton>
                 )}

@@ -31,7 +31,7 @@ const ListNote = ({ note, getNoteData }) => {
   }
   return (
 
-    <Box sx={{ width: "73.4%" ,marginLeft:"12.2%",marginBottom:"2%"}}>
+    <Box sx={{ width:"auto",marginBottom:"2%",left:0}}>
       <Paper style={{ border: "1px solid grey", padding: "2%" ,width:"auto", backgroundColor: note?.color ? note.color : '#fff'}}>
         <Grid className="Grid" sx={{ display: "flex", flexDirection: "column" }}>
           <Grid
