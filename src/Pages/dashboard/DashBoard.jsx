@@ -126,6 +126,11 @@ export default function SideNav() {
     setListToggle(!listToggle)
   }
 
+const [firstToggle , setfirstToggle ] = useState(false);
+ const firstNoteToggle = () => {
+  setfirstToggle(!firstToggle)
+ }
+
   const handleItemClick = (item) => {
     setMenudata(item);
   };
@@ -347,7 +352,7 @@ export default function SideNav() {
           </List>
         </Drawer>
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-          <Notes menudata={menudata} toggleView={toggle} displayView={listToggle} />
+          <Notes menudata={menudata} toggleView={toggle} displayView={listToggle}  firstNoteToggle={firstToggle}/>
         </Box>
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
           <DrawerHeader />
