@@ -31,6 +31,7 @@ import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined
 import '../dashboard/DashBoard.css';
 import { useMediaQuery } from '@mui/material';
 
+
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -107,7 +108,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-export default function SideNav() {
+ function DashBoard() {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
   const [menudata, setMenudata] = useState("Notes");
@@ -116,6 +117,7 @@ export default function SideNav() {
     setOpen(false);
   };
 
+  //this handleToggle for AppBar Toggle that means for grid/list view 
   const [toggle, setToggle] = useState(false);
   const handleToggle = () => {
     setToggle(!toggle)
@@ -135,10 +137,15 @@ const [firstToggle , setfirstToggle ] = useState(false);
     setMenudata(item);
   };
 
+const [searchQuery, setSearchQuery] = useState(''); // Add searchQuery state
+
+
+ // Add searchQuery state
   return (
     <>
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
+{/* this is header         */}
         <AppBar position="fixed" elevation={1} sx={{ backgroundColor: "#ffffff", color: "#2f2f2f" }} >
           <Toolbar>
             <IconButton
@@ -168,7 +175,7 @@ const [firstToggle , setfirstToggle ] = useState(false);
               </Typography>
             </div>
 
-            <SearchBar />
+           <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
             {isMobile?(
             <>
             <IconButton >
@@ -201,7 +208,7 @@ const [firstToggle , setfirstToggle ] = useState(false);
             )}
           </Toolbar>
         </AppBar>
-
+{/* this left bar */}
         <Drawer variant="permanent" open={open} >
           <DrawerHeader>
             <IconButton onClick={handleDrawerClose}>
@@ -351,8 +358,9 @@ const [firstToggle , setfirstToggle ] = useState(false);
             </ListItem>
           </List>
         </Drawer>
+
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-          <Notes menudata={menudata} toggleView={toggle} displayView={listToggle}  firstNoteToggle={firstToggle}/>
+          <Notes menudata={menudata} toggleView={toggle} displayView={listToggle} setSearchQuery={setSearchQuery } searchQuery={searchQuery}  firstNoteToggle={firstToggle}/>
         </Box>
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
           <DrawerHeader />
@@ -363,3 +371,4 @@ const [firstToggle , setfirstToggle ] = useState(false);
 
   );
 }
+export default DashBoard

@@ -5,12 +5,13 @@ import RemindMe from "../../cardComponent/RemindMe";
 import Collaborate from "../../cardComponent/Collaborate";
 import ColorPallete from "../../cardComponent/ColorPallete";
 import InsertPhotoOutlinedIcon from "@mui/icons-material/InsertPhotoOutlined";
-import Archive from "../../cardComponent/Archive";
+import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
+
 import { Container } from "@mui/system";
 import PushPinOutlinedIcon from '@mui/icons-material/PushPinOutlined';
 
 import { archiveNotes, deleteNotes } from "../../../services/DataService";
-import { Pin } from "@mui/icons-material";
+
 import DeleteIcon from '@mui/icons-material/Delete';
 
 
@@ -66,7 +67,7 @@ const ListNote = ({ note, getNoteData }) => {
               </IconButton>
 
               <IconButton onClick={archiveNote}>
-                <Archive />
+                <ArchiveOutlinedIcon />
               </IconButton>
 
               <IconButton onClick={deleteNote}>

@@ -3,7 +3,8 @@ import { TextField, Button, Paper } from "@mui/material/";
 import RemindMe from "../cardComponent/RemindMe";
 import IconButton from "@mui/material/IconButton";
 import ColorPallete from "../cardComponent/ColorPallete";
-import Archive from "../cardComponent/Archive";
+import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
+
 import Collaborate from "../cardComponent/Collaborate";
 import InsertPhotoOutlinedIcon from "@mui/icons-material/InsertPhotoOutlined";
 // import Delete from "../cardComponent/delete";
@@ -150,7 +151,7 @@ const MakeNote = ({ getNoteData, settoggle }) => {
                                     onClick={handleArchive}
                                     sx={{ padding: "0px 18px 0px 18px" }}
                                 >
-                                    <Archive />
+                                    <ArchiveOutlinedIcon />
                                 </IconButton>
 
                                 <IconButton sx={{ padding: "0px 18px 0px 18px" }}>

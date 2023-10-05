@@ -2,7 +2,8 @@ import './App.css';
 import SignIn from './Pages/signIn/SignIn';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import SignUp from './Pages/signUp/SignUp';
-import DashBoard from './Pages/dashboard/DashBoard';
+// import DashBoard from './Pages/dashboard/Headerr';
+import DashBoard from "./Pages/dashboard/DashBoard"
 
 
 function App() {

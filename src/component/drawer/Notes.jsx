@@ -6,9 +6,11 @@ import MakeNote from '../note/MakeNote';
 import { getNotes } from '../../services/DataService';
 import GridNote from '../note/displayNote/GridNote';
 import ListNote from '../note/displayNote/ListNote';
+import Headerr from '../../Pages/dashboard/DashBoard';
 
 
-const Notes = ({ menudata, toggleView, displayView,firstNoteToggle }) => {
+
+const Notes = ({ menudata, toggleView, displayView,firstNoteToggle,searchQuery }) => {
   const DrawerHeader = styled('div')(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
@@ -17,7 +19,7 @@ const Notes = ({ menudata, toggleView, displayView,firstNoteToggle }) => {
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
   }));
-
+ 
   //created useState for get note Api
   const [notes, setNotes] = useState([]);
 
@@ -40,9 +42,25 @@ const Notes = ({ menudata, toggleView, displayView,firstNoteToggle }) => {
     }
   };
 
-  useEffect(() => {
-    getNoteData();
-  }, [menudata]);
+  // useEffect(() => {
+  //   getNoteData();
+  // }, [menudata]);
+
+  useEffect(()=>{
+    if(searchQuery !==""){
+     
+      const searchResult = notes.filter(
+        (item) =>
+         item.title.toLowerCase().includes(searchQuery.toLowerCase()) 
+      );
+      // setNoteData
+      setNotes(searchResult);
+      // console.log(searchResult);
+    }else {
+      getNoteData();
+    }
+   
+  },[searchQuery,menudata])
 
 
   const [toggle, settoggle] = useState(false);
@@ -53,7 +71,9 @@ const Notes = ({ menudata, toggleView, displayView,firstNoteToggle }) => {
 
   return (
     <>
-      <DrawerHeader />
+    
+    {/* <Headerr/> */}
+    <DrawerHeader />
 
     
 

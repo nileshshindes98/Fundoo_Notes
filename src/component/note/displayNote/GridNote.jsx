@@ -11,7 +11,8 @@ import {
   deleteNotes,
   deleteNotesForever,
 } from "../../../services/DataService";
-import Archive from "../../cardComponent/Archive";
+import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
+
 import Collaborate from "../../cardComponent/Collaborate";
 import ColorPallete from "../../cardComponent/ColorPallete";
 import RemindMe from "../../cardComponent/RemindMe";
@@ -108,12 +109,15 @@ const GridNote = ({ note, getNoteData, setNoteData }) => {
 
                 {!note.isArchived ? (
                   <IconButton onClick={archiveNote}>
-                    <Archive />
+                    <ArchiveOutlinedIcon />
                   </IconButton>
                 ) : (
+                  <>
                   <IconButton onClick={unarchiveNote}>
                     <UnarchiveOutlinedIcon />
                   </IconButton>
+               
+                </>
                 )}
 
                 <IconButton onClick={deleteNote}>
@@ -125,9 +129,13 @@ const GridNote = ({ note, getNoteData, setNoteData }) => {
                 <IconButton onClick={deleteNoteForever}>
                   <DeleteForeverIcon />
                 </IconButton>
-                <IconButton onClick={restoreDeletedNote}>
+
+    {!note.isArchived?( <IconButton onClick={restoreDeletedNote}>
                   <RestoreFromTrashIcon />
-                </IconButton>
+                </IconButton>):(   <IconButton onClick={deleteNote}>
+                  <DeleteIcon />
+                </IconButton>)}            
+               
               </div>
             )}
           </Typography>

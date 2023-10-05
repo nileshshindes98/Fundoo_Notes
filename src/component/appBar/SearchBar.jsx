@@ -54,21 +54,23 @@ const Search = styled('div')(({ theme }) => ({
     },
   }));
 
-const SearchBar = () => {
+  const SearchBar = (props) => {
     return (
-        <div>
-            <Search>
-                <SearchIconWrapper>
-                    <SearchIcon />
-                </SearchIconWrapper>
-                <StyledInputBase
-                    placeholder="Search…"
-                    inputProps={{ 'aria-label': 'search' }}
-                />
-            </Search>
-
-        </div>
-    )
-}
+      <div>
+        <Search>
+          <SearchIconWrapper>
+            <SearchIcon />
+          </SearchIconWrapper>
+          <StyledInputBase
+            placeholder="Search…"
+            inputProps={{ 'aria-label': 'search' }}
+            onChange={(e)=> props.setSearchQuery(e.target.value)}
+            value={props.searchQuery}
+            
+          />
+        </Search>
+      </div>
+    );
+  };
 
 export default SearchBar
