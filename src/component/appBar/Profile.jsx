@@ -1,11 +1,9 @@
-import React, { useState } from 'react'
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import { IconButton, Menu, MenuItem } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
-
+import React, { useState } from "react";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import { IconButton, Menu, MenuItem } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
-
     // ------------------------this is for profile menu-------------------
     // ----------------------------------------------------------------------
 
@@ -20,8 +18,6 @@ const Profile = () => {
     const handleMenuClose = () => {
         setAnchorEl(null);
     };
-
-
 
     // -------------------------------------------------------------------------------------
 
@@ -59,23 +55,12 @@ const Profile = () => {
         </Menu>
     );
 
-
     return (
-        <div>
-            <MenuItem onClick={handleProfileMenuOpen}>
-                <IconButton
-                    size="large"
-                    aria-label="account of current user"
-                    aria-controls="primary-search-account-menu"
-                    aria-haspopup="true"
-                    color="black"
-                >
-                    <AccountCircle />
-                </IconButton>
-            </MenuItem>
+        <div style={{marginTop:5}}>
+            <AccountCircle onClick={handleProfileMenuOpen} />
             {renderMenu}
         </div>
-    )
-}
+    );
+};
 
-export default Profile
+export default Profile;

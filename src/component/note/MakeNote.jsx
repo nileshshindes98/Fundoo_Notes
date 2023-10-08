@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { TextField, Button, Paper } from "@mui/material/";
-import RemindMe from "../cardComponent/RemindMe";
+import AddAlertOutlinedIcon from "@mui/icons-material/AddAlertOutlined";
+
 import IconButton from "@mui/material/IconButton";
 import ColorPallete from "../cardComponent/ColorPallete";
-import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
+import ArchiveOutlinedIcon from "@mui/icons-material/ArchiveOutlined";
 
 import Collaborate from "../cardComponent/Collaborate";
 import InsertPhotoOutlinedIcon from "@mui/icons-material/InsertPhotoOutlined";
@@ -33,7 +34,7 @@ const MakeNote = ({ getNoteData, settoggle }) => {
         description: "",
         title: "",
         isArchived: false,
-        color :""
+        color: "",
     });
 
     // Create a new function called submitNote to post the note data to the API.
@@ -58,10 +59,10 @@ const MakeNote = ({ getNoteData, settoggle }) => {
     const handleColorSelect = (color) => {
         // Update the selected color in the state
         setNoteData({
-          ...noteData,
-          color: color,
+            ...noteData,
+            color: color,
         });
-      };
+    };
 
     //Update the handleChange function to update the noteData state variable.
     const handleChange = (event) => {
@@ -79,8 +80,18 @@ const MakeNote = ({ getNoteData, settoggle }) => {
                 },
             }}
         >
-            <Paper elevation={6} sx={{ width: "48vw", borderRadius: 2 ,backgroundColor: noteData?.color ? noteData.color : '#fff'}}>
-                <Card variant="outlined" sx={{ padding: 1, width: "auto",backgroundColor:"transparent"}}>
+            <Paper
+                elevation={6}
+                sx={{
+                    width: "48vw",
+                    borderRadius: 2,
+                    backgroundColor: noteData?.color ? noteData.color : "#fff",
+                }}
+            >
+                <Card
+                    variant="outlined"
+                    sx={{ padding: 1, width: "auto", backgroundColor: "transparent" }}
+                >
                     <Box sx={{ height: "auto" }}>
                         {/* First Row */}
                         <Input
@@ -94,7 +105,6 @@ const MakeNote = ({ getNoteData, settoggle }) => {
                                 ...styles.input,
 
                                 color: "Black",
-
                             }}
                         />
 
@@ -128,7 +138,7 @@ const MakeNote = ({ getNoteData, settoggle }) => {
                                     aria-label="Remainder"
                                     sx={{ padding: "0px 18px 0px 18px" }}
                                 >
-                                    <RemindMe />
+                                    <AddAlertOutlinedIcon />
                                 </IconButton>
 
                                 <IconButton sx={{ padding: "0px 18px 0px 18px" }}>
@@ -136,11 +146,12 @@ const MakeNote = ({ getNoteData, settoggle }) => {
                                 </IconButton>
 
                                 <IconButton sx={{ padding: "0px 18px 0px 18px" }}>
-                                    <ColorPallete  
-                                     action={"create"}
-                                    setNoteData={setNoteData}
-                                    getNoteData={getNoteData}
-                                    onColorSelect={handleColorSelect}/>
+                                    <ColorPallete
+                                        action={"create"}
+                                        setNoteData={setNoteData}
+                                        getNoteData={getNoteData}
+                                        onColorSelect={handleColorSelect}
+                                    />
                                 </IconButton>
 
                                 <IconButton sx={{ padding: "0px 18px 0px 18px" }}>
@@ -159,11 +170,15 @@ const MakeNote = ({ getNoteData, settoggle }) => {
                                 </IconButton>
                             </Box>
 
-                            <Button sx={{
-                                "&:hover": {
-                                    backgroundColor: "#f1f3f4",
-                                }, color: "black"
-                            }} onClick={submitNote}>
+                            <Button
+                                sx={{
+                                    "&:hover": {
+                                        backgroundColor: "#f1f3f4",
+                                    },
+                                    color: "black",
+                                }}
+                                onClick={submitNote}
+                            >
                                 Close
                             </Button>
                         </Box>

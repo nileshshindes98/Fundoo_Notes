@@ -76,8 +76,8 @@ export default function ColorPallete({ id, onColorSelect, action, noteId, setNot
                     )}
                 </Popper>
 
-                <Button sx={{ minWidth: "15px", padding: "0px 0px 6px 0px" }} onClick={handleClick('bottom-start')}>
-                    <PaletteOutlinedIcon sx={{ color:"rgba(0, 0, 0, 0.54)" }} />
+                <Button sx={{ minWidth: "10px" }} onClick={handleClick('bottom-start')}>
+                    <PaletteOutlinedIcon sx={{ color:"rgba(0, 0, 0, 0.54)"}} />
                 </Button>
 
 

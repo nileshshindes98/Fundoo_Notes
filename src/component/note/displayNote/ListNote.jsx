@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import { Typography, Box, Grid, Paper } from "@mui/material/";
-import RemindMe from "../../cardComponent/RemindMe";
+import AddAlertOutlinedIcon from "@mui/icons-material/AddAlertOutlined";
+
 import Collaborate from "../../cardComponent/Collaborate";
 import ColorPallete from "../../cardComponent/ColorPallete";
 import InsertPhotoOutlinedIcon from "@mui/icons-material/InsertPhotoOutlined";
@@ -49,7 +50,7 @@ const ListNote = ({ note, getNoteData }) => {
           <Grid item >
             <Typography sx={{ display:"flex",justifyContent:"flex-start"}}>
               <IconButton aria-label="Remainder">
-                <RemindMe />
+                <AddAlertOutlinedIcon />
               </IconButton>
 
               <IconButton>

@@ -18,7 +18,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Notes from '../../component/drawer/Notes';
 import LightbulbOutlinedIcon from "@mui/icons-material/LightbulbOutlined";
-import Refresh from '../../component/appBar/Refresh';
+import RefreshIcon from "@mui/icons-material/Refresh";
 import AppBarToggle from '../../component/appBar/AppBarToggle';
 import Setting from '../../component/appBar/Setting';
 import Profile from '../../component/appBar/Profile';
@@ -60,7 +60,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'flex-end',
-  padding: theme.spacing(0, 1),
+  padding: theme.spacing(0, 2 ),
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
 
@@ -147,7 +147,7 @@ const [searchQuery, setSearchQuery] = useState(''); // Add searchQuery state
         <CssBaseline />
 {/* this is header         */}
         <AppBar position="fixed" elevation={1} sx={{ backgroundColor: "#ffffff", color: "#2f2f2f" }} >
-          <Toolbar>
+          <Toolbar >
             <IconButton
               color="inherit"
               aria-label="open drawer"
@@ -180,7 +180,7 @@ const [searchQuery, setSearchQuery] = useState(''); // Add searchQuery state
             <>
             <IconButton >
                 <AppBarToggle handleToggle={handleToggle} toggle={toggle} listViewHandle={listViewHandle} listToggle={listToggle} />
-              </IconButton>
+            </IconButton>
               <IconButton>
                 <Profile />
               </IconButton>
@@ -189,7 +189,7 @@ const [searchQuery, setSearchQuery] = useState(''); // Add searchQuery state
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
               <IconButton>
-                <Refresh />
+                <RefreshIcon/>
               </IconButton>
               <IconButton >
                 <AppBarToggle handleToggle={handleToggle} toggle={toggle} listViewHandle={listViewHandle} listToggle={listToggle} />

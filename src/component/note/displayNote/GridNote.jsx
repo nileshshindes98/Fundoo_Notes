@@ -1,6 +1,6 @@
 import DeleteIcon from "@mui/icons-material/Delete";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import InsertPhotoOutlinedIcon from "@mui/icons-material/InsertPhotoOutlined";
+import EditNote from "../../cardComponent/EditNote";
 import RestoreFromTrashIcon from "@mui/icons-material/RestoreFromTrash";
 import { Box, Grid, Paper, Typography } from "@mui/material/";
 import IconButton from "@mui/material/IconButton";
@@ -10,12 +10,14 @@ import {
   changeColor,
   deleteNotes,
   deleteNotesForever,
+  updateNote
 } from "../../../services/DataService";
-import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
+import ArchiveOutlinedIcon from "@mui/icons-material/ArchiveOutlined";
 
 import Collaborate from "../../cardComponent/Collaborate";
 import ColorPallete from "../../cardComponent/ColorPallete";
-import RemindMe from "../../cardComponent/RemindMe";
+import AddAlertOutlinedIcon from "@mui/icons-material/AddAlertOutlined";
+
 import UnarchiveOutlinedIcon from "@mui/icons-material/UnarchiveOutlined";
 
 const GridNote = ({ note, getNoteData, setNoteData }) => {
@@ -33,7 +35,6 @@ const GridNote = ({ note, getNoteData, setNoteData }) => {
     await archiveNotes(data);
     getNoteData();
   };
-  
 
   const deleteNote = async () => {
     console.log(note.id);
@@ -56,6 +57,13 @@ const GridNote = ({ note, getNoteData, setNoteData }) => {
     getNoteData();
   };
 
+  const handleUpdateNote = async(editedNote) => {
+    console.log(note.id);
+    let data = { noteIdList: [note.id] };
+    await updateNote(data);
+    getNoteData();
+    console.log("data retrieve", getNoteData);
+  };
   return (
     <Box sx={{ width: "auto", m: 1 }}>
       <Paper
@@ -77,7 +85,6 @@ const GridNote = ({ note, getNoteData, setNoteData }) => {
               minWidth: "240px",
             }}
           >
-       
             {!note.isDeleted ? (
               <div
                 style={{
@@ -86,10 +93,10 @@ const GridNote = ({ note, getNoteData, setNoteData }) => {
                 }}
               >
                 <IconButton aria-label="Remainder">
-                  <RemindMe />
+                  <AddAlertOutlinedIcon />
                 </IconButton>
 
-                <IconButton>
+                <IconButton sx={{ padding: 0 }}>
                   <ColorPallete
                     noteId={note.id}
                     action={"edit"}
@@ -104,7 +111,7 @@ const GridNote = ({ note, getNoteData, setNoteData }) => {
                 </IconButton>
 
                 <IconButton>
-                  <InsertPhotoOutlinedIcon />
+                  <EditNote  note={note} onUpdate={handleUpdateNote}/>
                 </IconButton>
 
                 {!note.isArchived ? (
@@ -113,11 +120,10 @@ const GridNote = ({ note, getNoteData, setNoteData }) => {
                   </IconButton>
                 ) : (
                   <>
-                  <IconButton onClick={unarchiveNote}>
-                    <UnarchiveOutlinedIcon />
-                  </IconButton>
-               
-                </>
+                    <IconButton onClick={unarchiveNote}>
+                      <UnarchiveOutlinedIcon />
+                    </IconButton>
+                  </>
                 )}
 
                 <IconButton onClick={deleteNote}>
@@ -130,12 +136,15 @@ const GridNote = ({ note, getNoteData, setNoteData }) => {
                   <DeleteForeverIcon />
                 </IconButton>
 
-    {!note.isArchived?( <IconButton onClick={restoreDeletedNote}>
-                  <RestoreFromTrashIcon />
-                </IconButton>):(   <IconButton onClick={deleteNote}>
-                  <DeleteIcon />
-                </IconButton>)}            
-               
+                {!note.isArchived ? (
+                  <IconButton onClick={restoreDeletedNote}>
+                    <RestoreFromTrashIcon />
+                  </IconButton>
+                ) : (
+                  <IconButton onClick={deleteNote}>
+                    <DeleteIcon />
+                  </IconButton>
+                )}
               </div>
             )}
           </Typography>
