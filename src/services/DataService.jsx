@@ -58,10 +58,11 @@ export let changeColor = async (noteData) => {
   return response;
 };
 
-export const updateNote = async (noteData) => {
+export const updateNote = async (note) => {
+  console.log(note);
   const response = await axios.post(
-    `${BASE_URL}/updateNotes`,
-    noteData,
+   
+    `${BASE_URL}/updateNotes?${note.noteId}`,note,
     headerConfig()
   );
   return response;

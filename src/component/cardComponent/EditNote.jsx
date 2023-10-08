@@ -1,16 +1,8 @@
 import React, { useState } from "react";
 import EditNoteOutlinedIcon from "@mui/icons-material/EditNoteOutlined";
 
-const EditNote = ({ note, onUpdate }) => {
-  const [editedNote, setEditedNote] = useState(note);
-
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setEditedNote({
-      ...editedNote,
-      [name]: value,
-    });
-  };
+const EditNote = ({ onUpdate,editedNote }) => {
+ 
 
   const handleUpdate = () => {
     onUpdate(editedNote);
