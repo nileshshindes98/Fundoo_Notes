@@ -20,25 +20,49 @@ export const addNote = async (noteData) => {
   return response;
 };
 export const getNotes = async () => {
-    const response = await axios.get(`${BASE_URL}/getNotesList`, headerConfig());
-    return response;
-  
-  };
-export const archiveNotes =async (noteData)=>{
-  const response = await axios.post(`${BASE_URL}/archiveNotes`,noteData, headerConfig())
+  const response = await axios.get(`${BASE_URL}/getNotesList`, headerConfig());
   return response;
-}
-export const deleteNotes =async (noteData)=>{
-  const response = await axios.post(`${BASE_URL}/trashNotes`,noteData, headerConfig())
+};
+export const archiveNotes = async (noteData) => {
+  const response = await axios.post(
+    `${BASE_URL}/archiveNotes`,
+    noteData,
+    headerConfig()
+  );
   return response;
-}
+};
+export const deleteNotes = async (noteData) => {
+  const response = await axios.post(
+    `${BASE_URL}/trashNotes`,
+    noteData,
+    headerConfig()
+  );
+  return response;
+};
 
-export const deleteNotesForever =async (noteData)=>{
-  const response = await axios.post(`${BASE_URL}/deleteForeverNotes`,noteData, headerConfig())
+export const deleteNotesForever = async (noteData) => {
+  const response = await axios.post(
+    `${BASE_URL}/deleteForeverNotes`,
+    noteData,
+    headerConfig()
+  );
   return response;
-}
- 
-export let changeColor = async(noteData) => {
-  let response = await axios.post('http://fundoonotes.incubation.bridgelabz.com/api/notes/changesColorNotes',noteData,headerConfig())
+};
+
+export let changeColor = async (noteData) => {
+  let response = await axios.post(
+    "http://fundoonotes.incubation.bridgelabz.com/api/notes/changesColorNotes",
+    noteData,
+    headerConfig()
+  );
   return response;
-}
+};
+
+export const updateNote = async (noteData) => {
+  const response = await axios.post(
+    `${BASE_URL}/updateNotes`,
+    noteData,
+    headerConfig()
+  );
+  return response;
+};

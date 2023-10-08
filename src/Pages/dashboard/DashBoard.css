@@ -35,3 +35,11 @@
 .list-item-button.selected {
   background-color: #feefc3;
 }
+
+.icon-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* Adjust the number based on the number of icons */
+  gap: 1rem; /* Adjust the spacing between icons as needed */
+  align-items: center; /* Vertically center the icons */
+  justify-content: center; /* Horizontally center the icons */
+}
