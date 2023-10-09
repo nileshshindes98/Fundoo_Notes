@@ -1,0 +1,23 @@
+  const [arr, setArr] = useState([]);
+ const getNoteData = async () => {
+    // Fetch all notes
+    let response = await getNotes();
+    let notesData = response.data.data.data;
+    setArr(notesData); // Set 'arr' here
+
+    if (menudata === 'Notes') {
+      let newArray = notesData.filter(
+        (item) =>
+          item.isArchived === false &&
+          item.isDeleted === false &&
+          item.title.toLowerCase().includes(searchQuery.toLowerCase()) // Filter by search query
+      );
+      setNotes(newArray);
+    } else if (menudata === 'Archive') {
+      let newArray = notesData.filter((item) => item.isArchived === true);
+      setNotes(newArray);
+    } else if (menudata === 'Bin') {
+      let newArray = notesData.filter((item) => item.isDeleted === true);
+      setNotes(newArray);
+    }
+  };
