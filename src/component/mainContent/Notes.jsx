@@ -6,7 +6,7 @@ import MakeNote from '../note/MakeNote';
 import { getNotes } from '../../services/DataService';
 import GridNote from '../note/displayNote/GridNote';
 import ListNote from '../note/displayNote/ListNote';
-import Headerr from '../../Pages/dashboard/DashBoard';
+import Header from '../../Pages/dashboard/DashBoard';
 
 
 
